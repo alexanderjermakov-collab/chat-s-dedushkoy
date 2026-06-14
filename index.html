@@ -16,17 +16,30 @@
         <div class="brand">
           <p class="eyebrow">Семейная комната</p>
           <h1>Чат с дедушкой</h1>
-          <p class="subtitle">Нажми кнопку, разреши камеру и микрофон.</p>
+          <p class="subtitle">Выбери, кому позвонить, и введи семейный пароль.</p>
         </div>
 
-        <button class="call-button" id="startCall" type="button">
-          Позвонить
-        </button>
+        <div class="call-options" aria-label="Выбор звонка">
+          <button
+            class="call-button"
+            type="button"
+            data-call-target="grandpa"
+          >
+            Позвонить дедушке
+          </button>
+          <button
+            class="call-button call-button-alt"
+            type="button"
+            data-call-target="grandma"
+          >
+            Позвонить бабушке
+          </button>
+        </div>
       </section>
 
       <section class="call is-hidden" id="call" aria-label="Видеозвонок">
         <div class="call-bar">
-          <strong>Чат с дедушкой</strong>
+          <strong id="callTitle">Чат с дедушкой</strong>
           <button class="secondary-button" id="leaveCall" type="button">
             Завершить
           </button>
@@ -34,6 +47,30 @@
         <div class="meet" id="meet"></div>
       </section>
     </main>
+
+    <dialog class="password-dialog" id="passwordDialog">
+      <form class="password-form" id="passwordForm" method="dialog">
+        <h2 id="passwordTitle">Введите пароль</h2>
+        <p class="password-hint">Пароль можно узнать у дедушки или бабушки.</p>
+        <label class="password-label" for="passwordInput">Семейный пароль</label>
+        <input
+          autocomplete="one-time-code"
+          class="password-input"
+          id="passwordInput"
+          inputmode="numeric"
+          name="password"
+          required
+          type="password"
+        >
+        <p class="password-error" id="passwordError" role="alert"></p>
+        <div class="password-actions">
+          <button class="secondary-button" id="cancelPassword" type="button">
+            Отмена
+          </button>
+          <button class="confirm-button" type="submit">Войти</button>
+        </div>
+      </form>
+    </dialog>
 
     <script src="https://meet.jit.si/external_api.js"></script>
     <script src="script.js"></script>
