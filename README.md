@@ -1,49 +1,51 @@
-# Чат с дедушкой
+# Pokalbis su seneliu
 
-Минимальный MVP семейного видеочата: статическая страница с кнопками для звонка дедушке или бабушке. Перед входом страница просит семейный пароль, а затем открывает комнату meet.jit.si внутри страницы.
+Minimalus šeimos vaizdo pokalbio MVP: statinis puslapis su mygtukais skambinti seneliui arba močiutei. Prieš prisijungimą puslapis paprašo šeimos slaptažodžio, o tada atidaro meet.jit.si kambarį puslapyje.
 
-## Как проверить локально
+## Kaip patikrinti lokaliai
 
-Откройте `index.html` в браузере или запустите простой локальный сервер:
+Atidarykite `index.html` naršyklėje arba paleiskite paprastą lokalų serverį:
 
 ```sh
 python3 -m http.server 8080
 ```
 
-После этого откройте:
+Tada atidarykite:
 
 ```text
 http://localhost:8080
 ```
 
-## Как опубликовать на GitHub Pages
+## Kaip publikuoti per GitHub Pages
 
-1. Создайте новый аккаунт GitHub.
-2. Создайте новый публичный репозиторий, например `chat-s-dedushkoy`.
-3. Загрузите в него файлы из этой папки.
-4. В настройках репозитория откройте `Pages`.
-5. Выберите публикацию из ветки `main`, папка `/root`.
-6. Откройте выданный GitHub Pages URL.
+1. Sukurkite naują GitHub paskyrą.
+2. Sukurkite naują viešą repozitoriją, pavyzdžiui, `chat-s-dedushkoy`.
+3. Įkelkite failus iš šio aplanko.
+4. Repozitorijos nustatymuose atidarykite `Pages`.
+5. Pasirinkite publikavimą iš šakos `main`, aplankas `/root`.
+6. Atidarykite sugeneruotą GitHub Pages URL.
 
-## Комнаты и пароли
+## Kambariai ir slaptažodžiai
 
-Комнаты и пароли задаются в `script.js`:
+Kambariai, slaptažodžiai ir Jitsi rodomi vardai nustatomi faile `script.js`:
 
 ```js
 const rooms = {
   grandpa: {
-    title: "Звонок дедушке",
+    title: "Skambutis seneliui",
     roomName: "chat-s-dedushkoy-grandpa-mvp",
     password: "1234",
+    displayName: "Senelis",
   },
   grandma: {
-    title: "Звонок бабушке",
+    title: "Skambutis močiutei",
     roomName: "chat-s-dedushkoy-grandma-mvp",
     password: "5678",
+    displayName: "Močiutė",
   },
 };
 ```
 
-Перед публикацией лучше заменить имена комнат и пароли на уникальные семейные значения.
+Prieš publikavimą geriau pakeisti kambarių pavadinimus ir slaptažodžius į unikalius šeimos variantus.
 
-Важно: это простая защита от случайного входа, а не полноценная серверная авторизация. Так как сайт статический, пароли технически можно найти в исходниках страницы.
+Svarbu: tai paprasta apsauga nuo atsitiktinio prisijungimo, o ne pilna serverinė autorizacija. Kadangi svetainė statinė, slaptažodžius techniškai galima rasti puslapio kode.

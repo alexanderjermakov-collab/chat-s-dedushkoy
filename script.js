@@ -1,13 +1,15 @@
 const rooms = {
   grandpa: {
-    title: "Звонок дедушке",
+    title: "Skambutis seneliui",
     roomName: "chat-s-dedushkoy-grandpa-mvp",
     password: "1234",
+    displayName: "Senelis",
   },
   grandma: {
-    title: "Звонок бабушке",
+    title: "Skambutis močiutei",
     roomName: "chat-s-dedushkoy-grandma-mvp",
     password: "5678",
+    displayName: "Močiutė",
   },
 };
 
@@ -42,7 +44,7 @@ function loadJitsiApi() {
     script.src = "https://meet.jit.si/external_api.js";
     script.async = true;
     script.onload = resolve;
-    script.onerror = () => reject(new Error("Не удалось загрузить видеочат"));
+    script.onerror = () => reject(new Error("Nepavyko įkelti vaizdo pokalbio"));
     document.head.append(script);
   });
 
@@ -79,18 +81,20 @@ async function startCall(room) {
     parentNode: meetContainer,
     width: "100%",
     height: "100%",
+    lang: "lt",
     configOverwrite: {
+      defaultLanguage: "lt",
       prejoinPageEnabled: true,
       startWithAudioMuted: false,
       startWithVideoMuted: false,
     },
     interfaceConfigOverwrite: {
-      DEFAULT_REMOTE_DISPLAY_NAME: "Гость",
+      DEFAULT_REMOTE_DISPLAY_NAME: "Svečias",
       SHOW_JITSI_WATERMARK: false,
       SHOW_WATERMARK_FOR_GUESTS: false,
     },
     userInfo: {
-      displayName: "Семья",
+      displayName: room.displayName,
     },
   });
 }
@@ -120,7 +124,7 @@ passwordForm.addEventListener("submit", async (event) => {
   }
 
   if (passwordInput.value.trim() !== selectedRoom.password) {
-    passwordError.textContent = "Неверный пароль";
+    passwordError.textContent = "Neteisingas slaptažodis";
     passwordInput.select();
     return;
   }

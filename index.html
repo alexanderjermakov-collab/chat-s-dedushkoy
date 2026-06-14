@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="ru">
+<html lang="lt">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Чат с дедушкой</title>
+    <title>Pokalbis su seneliu</title>
     <meta
       name="description"
-      content="Простой семейный видеочат для дедушки и внуков."
+      content="Paprastas šeimos vaizdo pokalbis seneliams ir anūkams."
     >
     <link rel="stylesheet" href="style.css">
   </head>
@@ -14,34 +14,34 @@
     <main class="app">
       <section class="welcome" id="welcome">
         <div class="brand">
-          <p class="eyebrow">Семейная комната</p>
-          <h1>Чат с дедушкой</h1>
-          <p class="subtitle">Выбери, кому позвонить, и введи семейный пароль.</p>
+          <p class="eyebrow">Šeimos kambarys</p>
+          <h1>Pokalbis su seneliu</h1>
+          <p class="subtitle">Pasirink, kam skambinti, ir įvesk šeimos slaptažodį.</p>
         </div>
 
-        <div class="call-options" aria-label="Выбор звонка">
+        <div class="call-options" aria-label="Skambučio pasirinkimas">
           <button
             class="call-button"
             type="button"
             data-call-target="grandpa"
           >
-            Позвонить дедушке
+            Skambinti seneliui
           </button>
           <button
             class="call-button call-button-alt"
             type="button"
             data-call-target="grandma"
           >
-            Позвонить бабушке
+            Skambinti močiutei
           </button>
         </div>
       </section>
 
-      <section class="call is-hidden" id="call" aria-label="Видеозвонок">
+      <section class="call is-hidden" id="call" aria-label="Vaizdo skambutis">
         <div class="call-bar">
-          <strong id="callTitle">Чат с дедушкой</strong>
+          <strong id="callTitle">Pokalbis su seneliu</strong>
           <button class="secondary-button" id="leaveCall" type="button">
-            Завершить
+            Baigti
           </button>
         </div>
         <div class="meet" id="meet"></div>
@@ -56,9 +56,9 @@
       role="dialog"
     >
       <form class="password-form" id="passwordForm">
-        <h2 id="passwordTitle">Введите пароль</h2>
-        <p class="password-hint">Пароль можно узнать у дедушки или бабушки.</p>
-        <label class="password-label" for="passwordInput">Семейный пароль</label>
+        <h2 id="passwordTitle">Įveskite slaptažodį</h2>
+        <p class="password-hint">Slaptažodį gali pasakyti senelis arba močiutė.</p>
+        <label class="password-label" for="passwordInput">Šeimos slaptažodis</label>
         <input
           autocomplete="one-time-code"
           class="password-input"
@@ -71,13 +71,13 @@
         <p class="password-error" id="passwordError" role="alert"></p>
         <div class="password-actions">
           <button class="secondary-button" id="cancelPassword" type="button">
-            Отмена
+            Atšaukti
           </button>
-          <button class="confirm-button" type="submit">Войти</button>
+          <button class="confirm-button" type="submit">Prisijungti</button>
         </div>
       </form>
     </div>
 
-    <script src="script.js?v=20260614-1616"></script>
+    <script src="script.js?v=20260614-1624"></script>
   </body>
 </html>
