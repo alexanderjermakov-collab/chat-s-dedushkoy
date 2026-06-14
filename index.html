@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Чат с дедушкой</title>
+    <meta
+      name="description"
+      content="Простой семейный видеочат для дедушки и внуков."
+    >
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="welcome" id="welcome">
+        <div class="brand">
+          <p class="eyebrow">Семейная комната</p>
+          <h1>Чат с дедушкой</h1>
+          <p class="subtitle">Нажми кнопку, разреши камеру и микрофон.</p>
+        </div>
+
+        <button class="call-button" id="startCall" type="button">
+          Позвонить
+        </button>
+      </section>
+
+      <section class="call is-hidden" id="call" aria-label="Видеозвонок">
+        <div class="call-bar">
+          <strong>Чат с дедушкой</strong>
+          <button class="secondary-button" id="leaveCall" type="button">
+            Завершить
+          </button>
+        </div>
+        <div class="meet" id="meet"></div>
+      </section>
+    </main>
+
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
