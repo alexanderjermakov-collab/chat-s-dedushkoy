@@ -48,8 +48,14 @@
       </section>
     </main>
 
-    <dialog class="password-dialog" id="passwordDialog">
-      <form class="password-form" id="passwordForm" method="dialog">
+    <div
+      aria-labelledby="passwordTitle"
+      aria-modal="true"
+      class="password-modal is-hidden"
+      id="passwordModal"
+      role="dialog"
+    >
+      <form class="password-form" id="passwordForm">
         <h2 id="passwordTitle">Введите пароль</h2>
         <p class="password-hint">Пароль можно узнать у дедушки или бабушки.</p>
         <label class="password-label" for="passwordInput">Семейный пароль</label>
@@ -70,9 +76,8 @@
           <button class="confirm-button" type="submit">Войти</button>
         </div>
       </form>
-    </dialog>
+    </div>
 
-    <script src="https://meet.jit.si/external_api.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -17,7 +17,7 @@ const callTitle = document.querySelector("#callTitle");
 const meetContainer = document.querySelector("#meet");
 const callButtons = document.querySelectorAll("[data-call-target]");
 const leaveCallButton = document.querySelector("#leaveCall");
-const passwordDialog = document.querySelector("#passwordDialog");
+const passwordModal = document.querySelector("#passwordModal");
 const passwordForm = document.querySelector("#passwordForm");
 const passwordTitle = document.querySelector("#passwordTitle");
 const passwordInput = document.querySelector("#passwordInput");
@@ -26,6 +26,28 @@ const cancelPasswordButton = document.querySelector("#cancelPassword");
 
 let api = null;
 let selectedRoom = null;
+let jitsiApiLoad = null;
+
+function loadJitsiApi() {
+  if (window.JitsiMeetExternalAPI) {
+    return Promise.resolve();
+  }
+
+  if (jitsiApiLoad) {
+    return jitsiApiLoad;
+  }
+
+  jitsiApiLoad = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "https://meet.jit.si/external_api.js";
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error("Не удалось загрузить видеочат"));
+    document.head.append(script);
+  });
+
+  return jitsiApiLoad;
+}
 
 function requestPassword(roomKey) {
   selectedRoom = rooms[roomKey];
@@ -37,11 +59,11 @@ function requestPassword(roomKey) {
   passwordTitle.textContent = selectedRoom.title;
   passwordInput.value = "";
   passwordError.textContent = "";
-  passwordDialog.showModal();
+  passwordModal.classList.remove("is-hidden");
   passwordInput.focus();
 }
 
-function startCall(room) {
+async function startCall(room) {
   welcome.classList.add("is-hidden");
   call.classList.remove("is-hidden");
   callTitle.textContent = room.title;
@@ -49,6 +71,8 @@ function startCall(room) {
   if (api) {
     return;
   }
+
+  await loadJitsiApi();
 
   api = new JitsiMeetExternalAPI("meet.jit.si", {
     roomName: room.roomName,
@@ -88,7 +112,7 @@ callButtons.forEach((button) => {
   });
 });
 
-passwordForm.addEventListener("submit", (event) => {
+passwordForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   if (!selectedRoom) {
@@ -101,12 +125,20 @@ passwordForm.addEventListener("submit", (event) => {
     return;
   }
 
-  passwordDialog.close();
-  startCall(selectedRoom);
+  passwordModal.classList.add("is-hidden");
+
+  try {
+    await startCall(selectedRoom);
+  } catch (error) {
+    call.classList.add("is-hidden");
+    welcome.classList.remove("is-hidden");
+    passwordModal.classList.remove("is-hidden");
+    passwordError.textContent = error.message;
+  }
 });
 
 cancelPasswordButton.addEventListener("click", () => {
-  passwordDialog.close();
+  passwordModal.classList.add("is-hidden");
 });
 
 leaveCallButton.addEventListener("click", leaveCall);
