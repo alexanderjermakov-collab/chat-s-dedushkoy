@@ -8,7 +8,7 @@
       name="description"
       content="Paprastas šeimos vaizdo pokalbis seneliams ir anūkams."
     >
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260615-avatars">
   </head>
   <body>
     <main class="app">
@@ -25,14 +25,24 @@
             type="button"
             data-call-target="grandpa"
           >
-            Skambinti seneliui
+            <img
+              class="call-avatar"
+              src="assets/grandpa.jpg"
+              alt="Senelio nuotrauka"
+            >
+            <span class="call-label">Skambinti seneliui</span>
           </button>
           <button
             class="call-button call-button-alt"
             type="button"
             data-call-target="grandma"
           >
-            Skambinti močiutei
+            <img
+              class="call-avatar"
+              src="assets/grandma.jpg"
+              alt="Močiutės nuotrauka"
+            >
+            <span class="call-label">Skambinti močiutei</span>
           </button>
         </div>
       </section>
